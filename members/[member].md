@@ -85,8 +85,7 @@ import { isWithinTwoWeeks } from '../.vitepress/theme/utils'
       </a>
     </li>
   </ul>
-  <div v-else class="pt-28 text-center">
-    <!-- <img src="/eyes.png" class="w-80 mx-auto opacity-85 dark:opacity-100" /> -->
+  <div v-else class="pt-28 text-center"> 
     <p class="!mt-10 !mb-60 text-xl font-semibold">아직(도) 작성한 글이 없어요...</p>
   </div>
 </section>
