@@ -4,6 +4,7 @@ import imageFigures from 'markdown-it-image-figures'
 
   
 export default defineConfig({   
+  srcDir: './pages',
   title: "MANGTTU",
   description: "Welcome to my blog", 
   themeConfig: { 
@@ -18,8 +19,8 @@ export default defineConfig({
       {
         text: '프로젝트',
         items: [
-          { text: '- HCloud(운영)', link: '/hcloud/' },
-          { text: '- UNA(구축)', link: '/una/' },
+          { text: '- HCloud(운영)', link: '/hcloud' },
+          { text: '- UNA(구축)', link: '/una' },
         ]
       },
       {

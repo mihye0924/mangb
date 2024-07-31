@@ -6,7 +6,7 @@ avatar: false
 
 <script setup>
 import { data as hcloud } from './hcloud.data.js'
-import Avatar from '../.vitepress/theme/components/Avatar.vue' 
+import Avatar from '../../.vitepress/theme/components/Avatar.vue' 
 </script> 
 <section v-if="hcloud.length"> 
   <h1 class="mt-12 mb-8 !text-3xl font-bold">HCloud(운영)</h1>
