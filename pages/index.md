@@ -8,6 +8,6 @@ onMounted(() => {
 </script>
 
 <section >
-  <h1>MANGTTU</h1>
+  <h1>MANGB</h1>
 </section>
  

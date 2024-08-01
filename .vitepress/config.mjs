@@ -3,17 +3,14 @@ import taskLists from 'markdown-it-task-lists'
 import imageFigures from 'markdown-it-image-figures'
 
   
-export default defineConfig({   
-  // srcDir: './pages',
-  title: "MANGTTU",
+export default defineConfig({    
+  title: "MANGB",
   description: "Welcome to my blog", 
   rewrites: {
     "pages(/:path)*/(.*)": "(/:path)*/(.*)",
   },
   themeConfig: { 
-    nav: [ 
-      // { text: '포스트', link: '/' },
-      // { text: '멤버', link: '/members/' },
+    nav: [  
     ],
     posts: [
     ],
@@ -21,14 +18,22 @@ export default defineConfig({
       {
         text: '프로젝트',
         items: [
-          { text: '- HCloud(운영)', link: '/hcloud' },
-          { text: '- UNA(구축)', link: '/una' },
+          { text: '- HCloud(운영)', link: '/hcloud/' },
+          { text: '- UNA(구축)', link: '/una/' },
         ]
       },
       {
         text: 'Git',
         items: [
           { text: '- Git 관련 정보', link: '/git/' },
+        ]
+      },
+      {
+        text: 'Study',
+        items: [
+          { text: '- 배포', link: '/deploy/' },
+          { text: '- Vue3', link: '/vue3/' },
+          { text: '- Nuxt3', link: '/nuxt3/' }
         ]
       }
     ], 
