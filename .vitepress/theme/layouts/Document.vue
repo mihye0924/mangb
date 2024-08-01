@@ -32,8 +32,8 @@ interface ListItem {
 const prev: Ref<ListItem | null> = ref(null)
 const next: Ref<ListItem | null> = ref(null)
 const getLists = async () => {
-  const target = page.value.filePath?.split('/')[0]
-  const { data } = await import(`/${target}/${target}.data.js`)
+  const target = page.value.filePath?.split('/')[1]
+  const { data } = await import(`../../../pages/${target}/${target}.data.js`)
   const lists = data.map((item) => {
     return { title: item.frontmatter.title, url: item.url}
   })

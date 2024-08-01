@@ -3,7 +3,7 @@ import * as cheerio from 'cheerio'
 import path from 'path'
 import fs from 'fs'
 
-export default createContentLoader('hcloud/**/*.md', {
+export default createContentLoader('/pages/hcloud/**/*.md', {
   render: true,
   transform(rawData) { 
     return rawData.sort((a, b) => {
@@ -18,7 +18,7 @@ export default createContentLoader('hcloud/**/*.md', {
       } else {
         return +bDate - +aDate
       }
-    }).filter((page) => page.url !== '/hcloud/').map((page) => {
+    }).filter((page) => page.url !== '/pages/hcloud/').map((page) => {
       const $ = cheerio.load(page.html)
       const thumbnail = page.frontmatter.thumbnail || $('img').first().attr('src')
       const summary = $.text()

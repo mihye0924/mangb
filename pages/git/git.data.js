@@ -3,7 +3,7 @@ import * as cheerio from 'cheerio'
 import path from 'path'
 import fs from 'fs'
 
-export default createContentLoader('/git/**/**/*.md', {
+export default createContentLoader('/pages/git/**/**/*.md', {
   render: true,
   transform(rawData) {
     return rawData.sort((a, b) => {
@@ -18,7 +18,7 @@ export default createContentLoader('/git/**/**/*.md', {
       } else {
         return +bDate - +aDate
       }
-    }).filter((page) => page.url !== '/git/').map((page) => {
+    }).filter((page) => page.url !== '/pages/git/').map((page) => {
       const $ = cheerio.load(page.html)
       const thumbnail = page.frontmatter.thumbnail || $('img').first().attr('src')
       const summary = $.text()

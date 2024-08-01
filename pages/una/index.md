@@ -14,7 +14,7 @@ import Avatar from '../../.vitepress/theme/components/Avatar.vue'
   <ul class="grid grid-cols-1 gap-4 !px-0 !list-none sm:grid-cols-2 lg:grid-cols-3"> 
     <li v-for="post in una" class="mb-6 border"> 
       <div class="group relative overflow-hidden">
-        <a :href="post.url" class="block aspect-[5/4] border-b">
+        <a :href="post.url.replace('/pages','')" class="block aspect-[5/4] border-b">
           <img v-if="post.frontmatter?.thumbnail" :src="post.frontmatter.thumbnail" class="object-cover w-full h-full" />
           <div v-else class="flex justify-center items-center w-full h-full bg-zinc-100 text-zinc-300">
             <div class="w-full h-full max-w-40 max-h-40 p-4">
@@ -31,7 +31,7 @@ import Avatar from '../../.vitepress/theme/components/Avatar.vue'
           <a :href="`/tags/${tag}`" class="block px-2 rounded-2xl text-sm leading-6 bg-zinc-100 dark:bg-zinc-700">{{ tag }}</a>
         </li>
       </ul>
-      <a :href="post.url">
+      <a :href="post.url.replace('/pages','')">
         <h1 class="!mx-4 !text-2xl !leading-snug !font-bold">{{ post.frontmatter?.title || '제목없음' }}</h1>
         <p class="!mx-4 mb-5 line-clamp-4 text-sm font-normal !leading-6">{{ post.frontmatter.summary }}</p>
       </a>

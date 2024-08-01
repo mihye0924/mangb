@@ -4,9 +4,12 @@ import imageFigures from 'markdown-it-image-figures'
 
   
 export default defineConfig({   
-  srcDir: './pages',
+  // srcDir: './pages',
   title: "MANGTTU",
   description: "Welcome to my blog", 
+  rewrites: {
+    "pages(/:path)*/(.*)": "(/:path)*/(.*)",
+  },
   themeConfig: { 
     nav: [ 
       // { text: '포스트', link: '/' },

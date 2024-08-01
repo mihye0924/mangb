@@ -14,7 +14,7 @@ import { isWithinTwoWeeks } from '../../.vitepress/theme/utils'
 <template v-if="data = members[$params.member]">
   <div class="pt-10 mt-12 text-center">
     <div class="w-36 h-36 mx-auto border-8 border-zinc-200 dark:border-zinc-700 rounded-full overflow-hidden box-content">
-      <img v-if="data['사진']" :src="`./img/${data['사진']}`"  class="object-cover w-full h-full" />
+      <img v-if="data['사진']" :src="`/members/${data['사진']}`"  class="object-cover w-full h-full" />
       <div v-else class="flex justify-center items-center w-full h-full bg-zinc-100 text-zinc-300">
         <div class="w-full h-full max-w-40 max-h-40 p-4">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22ZM12 20C16.4183 20 20 16.4183 20 12C20 7.58172 16.4183 4 12 4C7.58172 4 4 7.58172 4 12C4 16.4183 7.58172 20 12 20ZM8 14H16V16H8V14ZM8 11C7.17157 11 6.5 10.3284 6.5 9.5C6.5 8.67157 7.17157 8 8 8C8.82843 8 9.5 8.67157 9.5 9.5C9.5 10.3284 8.82843 11 8 11ZM16 11C15.1716 11 14.5 10.3284 14.5 9.5C14.5 8.67157 15.1716 8 16 8C16.8284 8 17.5 8.67157 17.5 9.5C17.5 10.3284 16.8284 11 16 11Z"></path></svg>
@@ -53,7 +53,7 @@ import { isWithinTwoWeeks } from '../../.vitepress/theme/utils'
   <ul v-if="_posts = posts[$params.member]" class="grid grid-cols-1 gap-4 !px-0 !list-none sm:grid-cols-2 lg:grid-cols-3">
     <li v-for="post in _posts">
       <div class="group relative rounded-3xl overflow-hidden">
-        <a :href="post.url" class="block aspect-[5/4]">
+        <a :href="post.url.replace('/pages','')" class="block aspect-[5/4]">
           <img v-if="post.frontmatter?.thumbnail" :src="post.frontmatter.thumbnail" class="object-cover w-full h-full" />
           <div v-else class="flex justify-center items-center w-full h-full bg-zinc-100 text-zinc-300">
             <div class="w-full h-full max-w-40 max-h-40 p-4">
@@ -73,7 +73,7 @@ import { isWithinTwoWeeks } from '../../.vitepress/theme/utils'
           <a :href="`/tags/${tag}`" class="block px-2 rounded-full text-sm leading-6 bg-zinc-200 dark:bg-zinc-700">{{ tag }}</a>
         </li>
       </ul>
-      <a :href="post.url">
+      <a :href="post.url.replace('/pages','')">
         <h1 class="mb-3 !text-2xl !leading-snug !font-bold">{{ post.frontmatter?.title || '제목없음' }}</h1>
         <p class="!my-0 line-clamp-4 text-sm font-normal !leading-6">{{ post.frontmatter.summary }}</p>
       </a>
