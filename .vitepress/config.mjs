@@ -13,7 +13,6 @@ export default defineConfig({
       // { text: '멤버', link: '/members/' },
     ],
     posts: [
-
     ],
     sidebar: [
       {

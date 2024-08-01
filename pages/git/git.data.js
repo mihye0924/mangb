@@ -1,8 +1,9 @@
 import { createContentLoader } from 'vitepress'
 import * as cheerio from 'cheerio'
-import path from 'path' 
+import path from 'path'
+import fs from 'fs'
 
-export default createContentLoader('/**/**/*.md', {
+export default createContentLoader('/git/**/**/*.md', {
   render: true,
   transform(rawData) {
     return rawData.sort((a, b) => {
@@ -17,7 +18,7 @@ export default createContentLoader('/**/**/*.md', {
       } else {
         return +bDate - +aDate
       }
-    }).filter((page) => page.frontmatter.tags).map((page) => {
+    }).filter((page) => page.url !== '/git/').map((page) => {
       const $ = cheerio.load(page.html)
       const thumbnail = page.frontmatter.thumbnail || $('img').first().attr('src')
       const summary = $.text()
@@ -25,6 +26,10 @@ export default createContentLoader('/**/**/*.md', {
         const resolvedPath = path.resolve(page.url, thumbnail)
         const dirName = page.url.split('/').filter((path) => path)[0]
         const thumbnailPath = process.env.NODE_ENV === 'production' ? `/${dirName}/thumbnail_${page.url.split('/').filter((path) => path).at(-1)}.${thumbnail.split('.').at(-1)}` : resolvedPath
+        if (process.env.NODE_ENV === 'production') {
+          fs.mkdirSync(path.resolve(`./public/${dirName}`), { recursive: true })
+          fs.copyFileSync(path.resolve(`.${resolvedPath}`), path.resolve(`./public/${dirName}/thumbnail_${page.url.split('/').filter((path) => path).at(-1)}.${thumbnail.split('.').at(-1)}`))
+        }
         page.frontmatter.thumbnail = thumbnailPath
       }
       if (!page.frontmatter.summary && summary) {
@@ -32,25 +37,6 @@ export default createContentLoader('/**/**/*.md', {
       }
 
       return page
-    }).reduce((acc, cur) => {
-      const author = cur?.frontmatter?.author
-      const addItem = (author, item) => {
-        if (acc.hasOwnProperty(author)) {
-          acc[author].push(item)
-        } else {
-          acc[author] = [ item ]
-        }
-      }
-      if (author) {
-        if (Array.isArray(author)) {
-          author.forEach((author) => {
-            addItem(author, cur)
-          })
-        } else {
-          addItem(author, cur)
-        }
-      }
-      return acc
-    }, {})
+    })
   }
 })

@@ -7,7 +7,7 @@ import { useEditLink } from 'vitepress/dist/client/theme-default/composables/edi
 import VPDocAside from 'vitepress/dist/client/theme-default/components/VPDocAside.vue'
 import VPLink from 'vitepress/dist/client/theme-default/components/VPLink.vue'
 import Avatar from '../components/Avatar.vue'
-import Comment from '../components/Comment.vue'
+// import Comment from '../components/Comment.vue'
 
 const { theme, frontmatter, page } = useData()
 const editLink = useEditLink()
@@ -33,7 +33,7 @@ const prev: Ref<ListItem | null> = ref(null)
 const next: Ref<ListItem | null> = ref(null)
 const getLists = async () => {
   const target = page.value.filePath?.split('/')[0]
-  const { data } = await import(`../../../${target}/${target}.data.js`)
+  const { data } = await import(`/${target}/${target}.data.js`)
   const lists = data.map((item) => {
     return { title: item.frontmatter.title, url: item.url}
   })

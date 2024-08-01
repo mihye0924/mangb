@@ -4,7 +4,7 @@ import { useData } from 'vitepress'
 import { useEditLink } from 'vitepress/dist/client/theme-default/composables/edit-link'
 import DefaultTheme from 'vitepress/theme'
 import VPLink from 'vitepress/dist/client/theme-default/components/VPLink.vue'
-import Comment from '../components/Comment.vue'
+// import Comment from '../components/Comment.vue'
 
 const { Layout } = DefaultTheme
 const { theme, frontmatter, page } = useData()

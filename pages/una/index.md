@@ -1,17 +1,18 @@
 ---
-layout: article  
-aside: false
+layout: article 
+aside: false 
+avatar: false
 ---
 
 <script setup>
-import { data as git } from './git.data.js'
-import Avatar from '../.vitepress/theme/components/Avatar.vue'
+import { data as una } from './una.data.js'
+import Avatar from '../../.vitepress/theme/components/Avatar.vue'
 </script>
 
-<section v-if="git.length">
-  <h1 class="mt-12 mb-8 !text-3xl font-bold">Git 관련 정보</h1>
-  <ul class="grid grid-cols-1 gap-4 !px-0 !list-none sm:grid-cols-2 lg:grid-cols-3">
-    <li v-for="post in git" class="mb-6 border">
+<section v-if="una.length">
+  <h1 class="mt-12 mb-8 !text-3xl font-bold">UNA(구축)</h1>
+  <ul class="grid grid-cols-1 gap-4 !px-0 !list-none sm:grid-cols-2 lg:grid-cols-3"> 
+    <li v-for="post in una" class="mb-6 border"> 
       <div class="group relative overflow-hidden">
         <a :href="post.url" class="block aspect-[5/4] border-b">
           <img v-if="post.frontmatter?.thumbnail" :src="post.frontmatter.thumbnail" class="object-cover w-full h-full" />
