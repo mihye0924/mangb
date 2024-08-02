@@ -42,6 +42,7 @@ export default defineConfig({
         items: [ 
           { text: '- 윈도우', link: '/window/' },
           { text: '- 맥', link: '/mac/' },
+          { text: '- 기타/플러그인', link: '/etc/' },
         ]
       }
     ], 
