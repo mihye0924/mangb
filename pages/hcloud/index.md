@@ -8,7 +8,7 @@ import { data as hcloud } from './hcloud.data.js'
 import Avatar from '../../.vitepress/theme/components/Avatar.vue'  
 </script> 
 <section v-if="hcloud.length"> 
-  <h1 class="mt-12 mb-8 !text-3xl font-bold">HCloud(운영)</h1>
+  <h1 class="mt-12 mb-8 !text-3xl font-bold">{{hcloud[0].url.split('/')[2].toUpperCase()}} (운영)</h1>
   <ul class="grid grid-cols-1 gap-4 !px-0 !list-none sm:grid-cols-2 lg:grid-cols-3"> 
     <li v-for="post in hcloud" class="mb-6 border">  
       <div class="group relative overflow-hidden">

@@ -1,17 +1,17 @@
 ---
-layout: article  
-aside: false
+layout: article 
+aside: false 
+avatar: false
 ---
 
 <script setup>
-import { data as deploy } from './deploy.data.js'
-import Avatar from '../../.vitepress/theme/components/Avatar.vue'
+import { data as window } from './window.data.js'
+import Avatar from '../../.vitepress/theme/components/Avatar.vue' 
 </script>
-
-<section v-if="deploy.length">
-  <h1 class="mt-12 mb-8 !text-3xl font-bold">{{ deploy[0].url.split('/')[2].toUpperCase() }} 배포하기</h1>
-  <ul class="grid grid-cols-1 gap-4 !px-0 !list-none sm:grid-cols-2 lg:grid-cols-3">
-    <li v-for="post in deploy" class="mb-6 border">
+<section v-if="window.length">
+  <h1 class="mt-12 mb-8 !text-3xl font-bold">{{window[0].url.split('/')[2].toUpperCase()}} 에 대한 정보</h1>
+  <ul class="grid grid-cols-1 gap-4 !px-0 !list-none sm:grid-cols-2 lg:grid-cols-3"> 
+    <li v-for="post in window" class="mb-6 border"> 
       <div class="group relative overflow-hidden">
         <a :href="post.url.replace('/pages','')" class="block aspect-[5/4] border-b">
           <img v-if="post.frontmatter?.thumbnail" :src="post.frontmatter.thumbnail" class="object-cover w-full h-full" />

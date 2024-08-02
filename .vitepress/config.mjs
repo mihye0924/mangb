@@ -32,8 +32,15 @@ export default defineConfig({
         text: 'Study',
         items: [
           { text: '- 배포', link: '/deploy/' },
-          { text: '- Vue3', link: '/vue3/' },
-          { text: '- Nuxt3', link: '/nuxt3/' }
+          { text: '- Vue', link: '/vue/' },
+          { text: '- Nuxt', link: '/nuxt/' }, 
+        ]
+      },
+      {
+        text: '',
+        items: [ 
+          { text: '- 윈도우', link: '/window/' },
+          { text: '- 맥', link: '/mac/' },
         ]
       }
     ], 
