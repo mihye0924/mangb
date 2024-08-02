@@ -37,8 +37,13 @@ vitepress 로 배포 시 `npm run docs:preview` 로 테스트를 먼저 해본�
 
 deploy.yml 파일 생성
 1) build 하기
-2) deploy 하기
-> 
+2) deploy 하기  
+
+<details>
+<summary>코드보기</summary>
+<div markdown="1">
+
+
 ```js{4}
 # GitHub Pages에 VitePress 사이트를 빌드하고 배포하기 위한 샘플 워크플로우
 #
@@ -106,14 +111,16 @@ jobs:
         uses: actions/deploy-pages@v4
 ```
 
+</div>
+</details>
+
 위의 내용은 참고(refer) 하였음...
 
 
 ## cloudflare 설정하기
 cloudflare 사이트
 https://www.cloudflare.com/ko-kr/
-
------------
+ 
 
 ## 깃헙 저장소 연결 
 ### - 좌측 메뉴에 Pages 메뉴를 선택한다.

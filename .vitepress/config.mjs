@@ -20,6 +20,7 @@ export default defineConfig({
         items: [
           { text: '- HCloud(운영)', link: '/hcloud/' },
           { text: '- UNA(구축)', link: '/una/' },
+          { text: '- SPOTIFY(미니프로젝트)', link: '/spotify/' },
         ]
       },
       {
