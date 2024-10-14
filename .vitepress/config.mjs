@@ -4,7 +4,7 @@ import imageFigures from 'markdown-it-image-figures'
 
   
 export default defineConfig({    
-  title: "MANGB",
+  title: "MANGTTU",
   description: "Welcome to my blog", 
   rewrites: {
     "pages(/:path)*/(.*)": "(/:path)*/(.*)",
