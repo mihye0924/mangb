@@ -43,5 +43,5 @@ git push origin 브랜치이름
 ## 6. Branch 원격에서 삭제하려면
 
 ```
-git push origin -d 브랜치이름
+git push origin -D 브랜치이름
 ```
