@@ -1,57 +1,52 @@
-import { defineConfig } from 'vitepress'
-import taskLists from 'markdown-it-task-lists'
-import imageFigures from 'markdown-it-image-figures'
+import { defineConfig } from "vitepress";
+import taskLists from "markdown-it-task-lists";
+import imageFigures from "markdown-it-image-figures";
 
-  
-export default defineConfig({    
+export default defineConfig({
   title: "MANGTTU",
-  description: "Welcome to my blog", 
+  description: "Welcome to my blog",
   rewrites: {
     "pages(/:path)*/(.*)": "(/:path)*/(.*)",
   },
-  themeConfig: { 
-    nav: [  
-    ],
-    posts: [
-    ],
+  themeConfig: {
+    nav: [],
+    posts: [],
     sidebar: [
       {
-        text: '프로젝트',
+        text: "프로젝트",
         items: [
-          { text: '- HCloud(운영)', link: '/hcloud/' },
-          { text: '- UNA(구축)', link: '/una/' },
-          { text: '- SPOTIFY(미니프로젝트)', link: '/spotify/' },
-        ]
+          { text: "- HCloud(운영)", link: "/hcloud/" },
+          { text: "- UNA(구축)", link: "/una/" },
+          { text: "- SPOTIFY(미니프로젝트)", link: "/spotify/" },
+        ],
       },
       {
-        text: 'Git',
-        items: [
-          { text: '- Git 관련 정보', link: '/git/' },
-        ]
+        text: "Git",
+        items: [{ text: "- Git 관련 정보", link: "/git/" }],
       },
       {
-        text: 'Study',
+        text: "Study",
         items: [
-          { text: '- 배포', link: '/deploy/' },
-          { text: '- Vue', link: '/vue/' },
-          { text: '- Nuxt', link: '/nuxt/' }, 
-        ]
+          { text: "- 배포", link: "/deploy/" },
+          { text: "- Vue", link: "/vue/" },
+          { text: "- Nuxt", link: "/nuxt/" },
+          { text: "- Next", link: "/next/" },
+          { text: "- React Native", link: "/react-native/" },
+        ],
       },
       {
-        text: '',
-        items: [ 
-          { text: '- 윈도우', link: '/window/' },
-          { text: '- 맥', link: '/mac/' },
-          { text: '- 기타/플러그인', link: '/etc/' },
-        ]
-      }
-    ], 
-    socialLinks: [
-      { icon: 'github', link: 'https://github.com/mihye0924/' }
+        text: "",
+        items: [
+          { text: "- 윈도우", link: "/window/" },
+          { text: "- 맥", link: "/mac/" },
+          { text: "- 기타/플러그인", link: "/etc/" },
+        ],
+      },
     ],
-    outline: 'deep', 
+    socialLinks: [{ icon: "github", link: "https://github.com/mihye0924/" }],
+    outline: "deep",
     search: {
-      provider: 'local',
+      provider: "local",
     },
   },
   markdown: {
@@ -62,11 +57,10 @@ export default defineConfig({
       infoLabel: '<span class="emoji">💬</span>',
     },
     config: (md) => {
-      md.use(taskLists)
+      md.use(taskLists);
       md.use(imageFigures, {
-        figcaption: 'alt',
-      })
-    }
-  }
-})
-
+        figcaption: "alt",
+      });
+    },
+  },
+});
