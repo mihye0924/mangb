@@ -1,6 +1,6 @@
 ---
-layout: article 
-aside: false 
+layout: article
+aside: false
 avatar: false
 ---
 

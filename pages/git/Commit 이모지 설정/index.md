@@ -1,7 +1,7 @@
 ---
 author: 조미혜
 title: Commit 이모지 설정
-thumbnail: thumbnail.png
+thumbnail: thumbnail.jpg
 refer: https://inpa.tistory.com/entry/GIT-⚡️-Gitmoji-사용법-Gitmoji-cli
 tags: [Git]
 layout: article

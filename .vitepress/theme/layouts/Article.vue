@@ -1,28 +1,31 @@
 <script setup lang="ts">
-import { useRoute, useData } from 'vitepress'
-import { ref, computed } from 'vue'
-import type { Ref } from 'vue'
-import { useSidebar } from 'vitepress/theme'
-import { useEditLink } from 'vitepress/dist/client/theme-default/composables/edit-link'
-import VPDocAside from 'vitepress/dist/client/theme-default/components/VPDocAside.vue'
-import VPLink from 'vitepress/dist/client/theme-default/components/VPLink.vue'
-import Avatar from '../components/Avatar.vue'
-import Bookmark from '../components/Bookmark.vue'
-import Comment from '../components/Comment.vue'
+import { useRoute, useData } from "vitepress";
+import { ref, computed } from "vue";
+import type { Ref } from "vue";
+import { useSidebar } from "vitepress/theme";
+import { useEditLink } from "vitepress/dist/client/theme-default/composables/edit-link";
+import VPDocAside from "vitepress/dist/client/theme-default/components/VPDocAside.vue";
+import VPLink from "vitepress/dist/client/theme-default/components/VPLink.vue";
+import Avatar from "../components/Avatar.vue";
+import Bookmark from "../components/Bookmark.vue";
 
-const { theme, frontmatter, page } = useData()
-const editLink = useEditLink()
+const { theme, frontmatter, page } = useData();
+const editLink = useEditLink();
 const hasEditLink = computed(() => {
-  return theme.value.editLink && frontmatter.value.editLink !== false
-})
+  return theme.value.editLink && frontmatter.value.editLink !== false;
+});
 
-const route = useRoute()
-const { hasSidebar, hasAside, leftAside } = useSidebar()
+const route = useRoute();
+const { hasSidebar, hasAside, leftAside } = useSidebar();
 
 const term = computed(() => {
-  const titleDuplicate = new RegExp(`${page.value.title.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&')}\/$`)
-  return `${page.value.filePath?.replace(/[^\/]+\.\w{2,3}$/, '').replace(titleDuplicate, '')}${page.value.title}`
-})
+  const titleDuplicate = new RegExp(
+    `${page.value.title.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&")}\/$`
+  );
+  return `${page.value.filePath
+    ?.replace(/[^\/]+\.\w{2,3}$/, "")
+    .replace(titleDuplicate, "")}${page.value.title}`;
+});
 
 interface ListItem {
   title: string;
@@ -30,24 +33,33 @@ interface ListItem {
   url: string;
 }
 
-const prev: Ref<ListItem | null> = ref(null)
-const next: Ref<ListItem | null> = ref(null)
+const prev: Ref<ListItem | null> = ref(null);
+const next: Ref<ListItem | null> = ref(null);
 const getLists = async () => {
-  const target = page.value.filePath?.split('/')[1] 
-  const { data } = await import(`../../../pages/${target}/${target}.data.js`) 
+  const target = page.value.filePath?.split("/")[1];
+  const { data } = await import(`../../../pages/${target}/${target}.data.js`);
   const lists = data.map((item) => {
-    return { title: item.frontmatter.title, thumbnail: item.frontmatter.thumbnail, url: item.url}
-  })
-  const currentIndex = lists?.findIndex(({ title }) => title === page.value.title)
-    
-  prev.value = currentIndex > 0 ? lists[currentIndex - 1] : null
-  next.value = currentIndex > -1 && currentIndex < lists.length - 1 ? lists[currentIndex + 1] : null
-}
+    return {
+      title: item.frontmatter.title,
+      thumbnail: item.frontmatter.thumbnail,
+      url: item.url.replace("/pages", ""),
+    };
+  });
+  const currentIndex = lists?.findIndex(
+    ({ title }) => title === page.value.title
+  );
+
+  prev.value = currentIndex > 0 ? lists[currentIndex - 1] : null;
+  next.value =
+    currentIndex > -1 && currentIndex < lists.length - 1
+      ? lists[currentIndex + 1]
+      : null;
+};
 
 const pageName = computed(() => {
-  getLists()
-  return route.path.replace(/[./]+/g, '_').replace(/_html$/, '')
-})
+  getLists();
+  return route.path.replace(/[./]+/g, "_").replace(/_html$/, "");
+});
 </script>
 
 <template>
@@ -58,17 +70,25 @@ const pageName = computed(() => {
   >
     <slot name="doc-top" />
     <div class="container">
-      <div v-if="hasAside" class="aside" :class="{'left-aside': leftAside}">
+      <div v-if="hasAside" class="aside" :class="{ 'left-aside': leftAside }">
         <div class="aside-curtain" />
         <div class="aside-container">
           <div class="aside-content">
             <VPDocAside>
               <template #aside-top><slot name="aside-top" /></template>
               <template #aside-bottom><slot name="aside-bottom" /></template>
-              <template #aside-outline-before><slot name="aside-outline-before" /></template>
-              <template #aside-outline-after><slot name="aside-outline-after" /></template>
-              <template #aside-ads-before><slot name="aside-ads-before" /></template>
-              <template #aside-ads-after><slot name="aside-ads-after" /></template>
+              <template #aside-outline-before
+                ><slot name="aside-outline-before"
+              /></template>
+              <template #aside-outline-after
+                ><slot name="aside-outline-after"
+              /></template>
+              <template #aside-ads-before
+                ><slot name="aside-ads-before"
+              /></template>
+              <template #aside-ads-after
+                ><slot name="aside-ads-after"
+              /></template>
             </VPDocAside>
           </div>
         </div>
@@ -78,28 +98,49 @@ const pageName = computed(() => {
         <div class="content-container">
           <slot name="doc-before">
             <ul v-if="frontmatter.tags">
-              <li v-for="tag in frontmatter.tags" class="inline-block mr-1 mb-1.5 last:mb-5">
-                <a :href="`/tags/${tag}`" class="block px-2 rounded-full text-sm leading-6 bg-zinc-200 dark:bg-zinc-700">{{ tag }}</a>
+              <li
+                v-for="tag in frontmatter.tags"
+                class="inline-block mr-1 mb-1.5 last:mb-5"
+              >
+                <a
+                  :href="`/tags/${tag}`"
+                  class="block px-2 rounded-full text-sm leading-6 bg-zinc-200 dark:bg-zinc-700"
+                  >{{ tag }}</a
+                >
               </li>
-            </ul> 
-           <template v-if="frontmatter.avatar">
-             <h1 class="mb-5 text-4xl sm:text-5xl leading-tight font-bold">{{ page.title }}</h1>
-            <Avatar :name="frontmatter.author" :date="frontmatter.created" class="mb-20" />
-            <Bookmark :data="frontmatter.refer" />
-           </template>
+            </ul>
+            <template v-if="frontmatter.avatar">
+              <h1 class="mb-5 text-4xl sm:text-5xl leading-tight font-bold">
+                {{ page.title }}
+              </h1>
+              <Avatar
+                :name="frontmatter.author"
+                :date="frontmatter.created"
+                class="mb-20"
+              />
+              <Bookmark :data="frontmatter.refer" />
+            </template>
           </slot>
           <main class="main">
             <Content
               class="vp-doc"
               :class="[
                 pageName,
-                theme.externalLinkIcon && 'external-link-icon-enabled'
+                theme.externalLinkIcon && 'external-link-icon-enabled',
               ]"
             />
-            <div v-if="frontmatter.contributors?.length" class="pt-6 mt-16 border-t border-zinc-200 dark:border-zinc-700">
+            <div
+              v-if="frontmatter.contributors?.length"
+              class="pt-6 mt-16 border-t border-zinc-200 dark:border-zinc-700"
+            >
               <p class="mb-4 text-lg font-bold">기여자</p>
-              <ul class="grid grid-cols-2 gap-4 !px-0 !list-none sm:grid-cols-4">
-                <li v-for="(member, idx) in frontmatter.contributors.reverse()" class="flex">
+              <ul
+                class="grid grid-cols-2 gap-4 !px-0 !list-none sm:grid-cols-4"
+              >
+                <li
+                  v-for="(member, idx) in frontmatter.contributors.reverse()"
+                  class="flex"
+                >
                   <Avatar :name="member" type="minimal" />
                 </li>
               </ul>
@@ -108,33 +149,60 @@ const pageName = computed(() => {
           <footer class="VPDocFooter">
             <div v-if="hasEditLink" class="edit-info mt-20">
               <div class="edit-link">
-                <VPLink class="edit-link-button" :href="editLink.url" :no-icon="true">
+                <VPLink
+                  class="edit-link-button"
+                  :href="editLink.url"
+                  :no-icon="true"
+                >
                   <span class="vpi-square-pen edit-link-icon" />
                   {{ editLink.text }}
                 </VPLink>
               </div>
             </div>
             <!-- <Comment :term="term" :class="{ 'mt-0': hasEditLink }" /> -->
-            <nav v-if="prev || next" class="sm:flex py-8 border-t border-zinc-200 dark:border-zinc-700">
+            <nav
+              v-if="prev || next"
+              class="sm:flex py-8 border-t border-zinc-200 dark:border-zinc-700"
+            >
               <div v-if="prev" :class="next ? 'sm:w-1/2' : 'w-full'">
                 <a class="flex" :href="prev.url">
-                  <div class="hidden min-[460px]:block w-28 min-w-28 mb-auto aspect-[5/4] rounded-2xl overflow-hidden">
-                    <img :src="prev.thumbnail" class="w-full h-full object-cover" />
+                  <div
+                    class="hidden min-[460px]:block w-28 min-w-28 mb-auto aspect-[5/4] rounded-2xl overflow-hidden"
+                  >
+                    <img
+                      :src="prev.thumbnail"
+                      class="w-full h-full object-cover"
+                    />
                   </div>
                   <div class="flex flex-col py-1.5 min-[460px]:mx-3">
                     <span class="text-sm">Previous page</span>
-                    <span class="mt-2 text-xl font-bold leading-6">{{ prev.title }}</span>
+                    <span class="mt-2 text-xl font-bold leading-6">{{
+                      prev.title
+                    }}</span>
                   </div>
                 </a>
               </div>
-              <div v-if="next" class="mt-6 min-[460px]:mt-4 sm:mt-0" :class="prev ? 'sm:w-1/2' : 'w-full'">
+              <div
+                v-if="next"
+                class="mt-6 min-[460px]:mt-4 sm:mt-0"
+                :class="prev ? 'sm:w-1/2' : 'w-full'"
+              >
                 <a class="flex sm:flex-row-reverse" :href="next.url">
-                  <div class="hidden min-[460px]:block w-28 min-w-28 mb-auto aspect-[5/4] rounded-2xl overflow-hidden">
-                    <img :src="next.thumbnail" class="w-full h-full object-cover" />
+                  <div
+                    class="hidden min-[460px]:block w-28 min-w-28 mb-auto aspect-[5/4] rounded-2xl overflow-hidden"
+                  >
+                    <img
+                      :src="next.thumbnail"
+                      class="w-full h-full object-cover"
+                    />
                   </div>
-                  <div class="flex flex-col py-1.5 min-[460px]:mx-3 sm:items-end sm:text-right">
+                  <div
+                    class="flex flex-col py-1.5 min-[460px]:mx-3 sm:items-end sm:text-right"
+                  >
                     <span class="text-sm">Next page</span>
-                    <span class="mt-2 text-xl font-bold leading-6">{{ next.title }}</span>
+                    <span class="mt-2 text-xl font-bold leading-6">{{
+                      next.title
+                    }}</span>
                   </div>
                 </a>
               </div>
@@ -221,7 +289,10 @@ const pageName = computed(() => {
 .aside-container {
   position: fixed;
   top: 0;
-  padding-top: calc(var(--vp-nav-height) + var(--vp-layout-top-height, 0px) + var(--vp-doc-top-height, 0px) + 48px);
+  padding-top: calc(
+    var(--vp-nav-height) + var(--vp-layout-top-height, 0px) +
+      var(--vp-doc-top-height, 0px) + 48px
+  );
   width: 224px;
   height: 100vh;
   overflow-x: hidden;
@@ -245,7 +316,9 @@ const pageName = computed(() => {
 .aside-content {
   display: flex;
   flex-direction: column;
-  min-height: calc(100vh - (var(--vp-nav-height) + var(--vp-layout-top-height, 0px) + 48px));
+  min-height: calc(
+    100vh - (var(--vp-nav-height) + var(--vp-layout-top-height, 0px) + 48px)
+  );
   padding-bottom: 32px;
 }
 
