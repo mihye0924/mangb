@@ -1,18 +1,19 @@
 ---
 layout: article
 aside: false
-avatar: false
 ---
 
 <script setup>
-import { data as una } from './una.data.js'
-import Avatar from '../../.vitepress/theme/components/Avatar.vue'
+import { data as hcloud } from './sm.data.js' 
+import Avatar from '../../../.vitepress/theme/components/Avatar.vue'  
 </script>
-
-<section v-if="una.length">
-  <h1 class="mt-12 mb-8 !text-3xl font-bold">{{ una[0].url.split('/')[2].toUpperCase() }}(구축)</h1>
+<section v-if="hcloud.length"> 
+  <h1 class="mt-12 mb-8 !text-3xl font-bold">
+  {{hcloud[0].url.split('/')[2].toUpperCase()}} (운영)
+  <p class="!text-sm !my-0 !mt-2 text-gray-500">2024.05.01 (~진행중)</p>
+  </h1>
   <ul class="grid grid-cols-1 gap-4 !px-0 !list-none sm:grid-cols-2 lg:grid-cols-3"> 
-    <li v-for="post in una" class="mb-6 border"> 
+    <li v-for="post in hcloud" class="mb-6 border">  
       <div class="group relative overflow-hidden">
         <a :href="post.url.replace('/pages','')" class="block aspect-[5/4] border-b">
           <img v-if="post.frontmatter?.thumbnail" :src="post.frontmatter.thumbnail" class="object-cover w-full h-full" />

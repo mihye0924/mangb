@@ -36,8 +36,17 @@ interface ListItem {
 const prev: Ref<ListItem | null> = ref(null);
 const next: Ref<ListItem | null> = ref(null);
 const getLists = async () => {
-  const target = page.value.filePath?.split("/")[1];
-  const { data } = await import(`../../../pages/${target}/${target}.data.js`);
+  const target = page.value.relativePath
+    .replace(/\/index\.md$|\.md$/, "")
+    .replace(/\/+$/, "");
+  const dynamic = target
+    .split("/")
+    .filter((item) => item.toUpperCase() !== page.value.title.toUpperCase());
+
+  const url = `../../../pages/${dynamic[1] ? dynamic.join("/") : dynamic[0]}/${
+    dynamic[1] ? dynamic[1] : dynamic[0]
+  }.data.js`;
+  const { data } = await import(url);
   const lists = data.map((item) => {
     return {
       title: item.frontmatter.title,

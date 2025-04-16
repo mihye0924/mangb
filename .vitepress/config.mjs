@@ -15,31 +15,54 @@ export default defineConfig({
       {
         text: "프로젝트",
         items: [
-          { text: "- HCloud(운영)", link: "/hcloud/" },
-          { text: "- UNA(구축)", link: "/una/" },
-          { text: "- SPOTIFY(미니프로젝트)", link: "/spotify/" },
+          {
+            text: "▶ HCloud",
+            items: [
+              {
+                text: "구축",
+                link: "/hcloud/si/",
+              },
+              {
+                text: "운영",
+                link: "/hcloud/sm/",
+              },
+            ],
+          },
+          {
+            text: "▶ UNA",
+            items: [
+              {
+                text: "구축",
+                link: "/una/si/",
+              },
+            ],
+          },
         ],
       },
       {
-        text: "Git",
-        items: [{ text: "- Git 관련 정보", link: "/git/" }],
+        text: "▶ Git",
+        items: [{ text: "Git 관련 정보", link: "/git/" }],
       },
       {
-        text: "Study",
+        text: "▶ Study",
         items: [
-          { text: "- 배포", link: "/deploy/" },
-          { text: "- Vue", link: "/vue/" },
-          { text: "- Nuxt", link: "/nuxt/" },
-          { text: "- Next", link: "/next/" },
-          { text: "- React Native", link: "/react-native/" },
+          { text: "배포", link: "/deploy/" },
+          { text: "Vue", link: "/vue/" },
+          { text: "Nuxt", link: "/nuxt/" },
+          { text: "Next", link: "/next/" },
+          { text: "React Native", link: "/react-native/" },
         ],
+      },
+      {
+        text: "▶ Mini Project",
+        items: [{ text: "Spotify", link: "/spotify/" }],
       },
       {
         text: "",
         items: [
-          { text: "- 윈도우", link: "/window/" },
-          { text: "- 맥", link: "/mac/" },
-          { text: "- 기타/플러그인", link: "/etc/" },
+          { text: "윈도우", link: "/window/" },
+          { text: "맥", link: "/mac/" },
+          { text: "기타/플러그인", link: "/etc/" },
         ],
       },
     ],
