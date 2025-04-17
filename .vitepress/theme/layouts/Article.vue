@@ -43,10 +43,11 @@ const getLists = async () => {
     .split("/")
     .filter((item) => item.toUpperCase() !== page.value.title.toUpperCase());
 
-  const url = `../../../pages/${dynamic[1] ? dynamic.join("/") : dynamic[0]}/${
-    dynamic[1] ? dynamic[1] : dynamic[0]
-  }.data.js`;
-  const { data } = await import(url);
+  const { data } = await import(
+    `../../../pages/${dynamic[1] ? dynamic.join("/") : dynamic[0]}/${
+      dynamic[1] ? dynamic[1] : dynamic[0]
+    }.data.js`
+  );
   const lists = data.map((item) => {
     return {
       title: item.frontmatter.title,
