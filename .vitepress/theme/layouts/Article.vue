@@ -35,26 +35,70 @@ interface ListItem {
 
 const prev: Ref<ListItem | null> = ref(null);
 const next: Ref<ListItem | null> = ref(null);
+// const getLists = async () => {
+//   const target = page.value.relativePath
+//     .replace(/\/index\.md$|\.md$/, "")
+//     .replace(/\/+$/, "");
+//   const dynamic = target
+//     .split("/")
+//     .filter((item) => item.toUpperCase() !== page.value.title.toUpperCase());
+
+//   const { data } = await import(
+//     `../../../pages/${dynamic[1] ? dynamic.join("/") : dynamic[0]}/${
+//       dynamic[1] ? dynamic[1] : dynamic[0]
+//     }.data.js`
+//   );
+//   const lists = data?.map((item) => {
+//     return {
+//       title: item.frontmatter.title,
+//       thumbnail: item.frontmatter.thumbnail,
+//       url: item.url.replace("/pages", ""),
+//     };
+//   });
+//   const currentIndex = lists?.findIndex(
+//     ({ title }) => title === page.value.title
+//   );
+
+//   prev.value = currentIndex > 0 ? lists[currentIndex - 1] : null;
+//   next.value =
+//     currentIndex > -1 && currentIndex < lists.length - 1
+//       ? lists[currentIndex + 1]
+//       : null;
+// };
 const getLists = async () => {
   const target = page.value.relativePath
     .replace(/\/index\.md$|\.md$/, "")
     .replace(/\/+$/, "");
+
   const dynamic = target
     .split("/")
     .filter((item) => item.toUpperCase() !== page.value.title.toUpperCase());
 
-  const { data } = await import(
-    `../../../pages/${dynamic[1] ? dynamic.join("/") : dynamic[0]}/${
-      dynamic[1] ? dynamic[1] : dynamic[0]
-    }.data.js`
-  );
-  const lists = data.map((item) => {
+  const basePath = dynamic[1] ? dynamic.join("/") : dynamic[0];
+  const filePath = `../../../pages/${basePath}/${
+    dynamic[1] ? dynamic[1] : dynamic[0]
+  }.data.js`;
+
+  // glob import
+  const modules = import.meta.glob("../../../pages/**/*.data.js");
+
+  const importModule = modules[filePath];
+  if (!importModule) {
+    console.error("Data module not found for path:", filePath);
+    return;
+  }
+
+  const mod = await importModule();
+  const data = mod.data;
+
+  const lists = data?.map((item) => {
     return {
       title: item.frontmatter.title,
       thumbnail: item.frontmatter.thumbnail,
       url: item.url.replace("/pages", ""),
     };
   });
+
   const currentIndex = lists?.findIndex(
     ({ title }) => title === page.value.title
   );
