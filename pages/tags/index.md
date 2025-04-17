@@ -20,7 +20,7 @@ import { data as tags } from './tags.data.js'
     </li>
   </ul>
   <div v-else class="pt-28 text-center">
-    <img src="/eyes.png" class="w-80 mx-auto opacity-85 dark:opacity-100" />
+    <img src="./eyes.png" class="w-80 mx-auto opacity-85 dark:opacity-100" />
     <p class="!mt-10 !mb-60 text-xl font-semibold">등록된 태그가 없어요...</p>
   </div>
 </section>
