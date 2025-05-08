@@ -19,10 +19,6 @@ export default defineConfig({
             text: "▶ HCloud",
             items: [
               {
-                text: "구축",
-                link: "/hcloud/si/",
-              },
-              {
                 text: "운영",
                 link: "/hcloud/sm/",
               },
