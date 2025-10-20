@@ -5,13 +5,13 @@ avatar: false
 ---
 
 <script setup>
-import { data as una } from './si.data.js'
+import { data as una } from './una.data.js'
 import Avatar from '../../../.vitepress/theme/components/Avatar.vue'
 </script>
 
 <section v-if="una.length">
   <h1 class="mt-12 mb-8 !text-3xl font-bold">
-    {{ una[0].url.split('/')[2].toUpperCase() }}(구축) 
+    {{ una[0].url.split('/')[3].toUpperCase() }}(구축) 
     <p class="!text-sm !my-0 !mt-2 text-gray-500">2024.08.12 ~ 2024.10.14 (3개월)</p>
   </h1>
   <ul class="grid grid-cols-1 gap-4 !px-0 !list-none sm:grid-cols-2 lg:grid-cols-3"> 

@@ -2,7 +2,7 @@
 import { onMounted } from 'vue' 
 
 onMounted(() => {
-  window.location.href = '/hcloud/sm'
+  window.location.href = '/sm/hcloud'
 })
 </script>
 

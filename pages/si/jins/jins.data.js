@@ -3,7 +3,7 @@ import * as cheerio from "cheerio";
 import path from "path";
 import fs from "fs";
 
-export default createContentLoader("/pages/una/si/**/*.md", {
+export default createContentLoader("/pages/si/jins/**/*.md", {
   render: true,
   transform(rawData) {
     return rawData
@@ -30,7 +30,7 @@ export default createContentLoader("/pages/una/si/**/*.md", {
           return +bDate - +aDate;
         }
       })
-      .filter((page) => page.url !== "/pages/una/si/")
+      .filter((page) => page.url !== "/pages/si/jins/")
       .map((page) => {
         const $ = cheerio.load(page.html);
         const thumbnail =

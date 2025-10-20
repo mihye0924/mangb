@@ -13,34 +13,42 @@ export default defineConfig({
     posts: [],
     sidebar: [
       {
+        text: "Project Manager",
+        items: [{ text: "일정관리", link: "/prj/" }],
+      },
+      {
         text: "프로젝트",
         items: [
           {
-            text: "▶ HCloud",
+            text: "운영",
             items: [
               {
-                text: "운영",
-                link: "/hcloud/sm/",
+                text: "HCloud",
+                link: "/sm/hcloud/",
               },
             ],
           },
           {
-            text: "▶ UNA",
+            text: "구축",
             items: [
               {
-                text: "구축",
-                link: "/una/si/",
+                text: "UNA",
+                link: "/si/una/",
+              },
+              {
+                text: "JINS",
+                link: "/si/jins/",
               },
             ],
           },
         ],
       },
       {
-        text: "▶ Git",
+        text: "Git",
         items: [{ text: "Git 관련 정보", link: "/git/" }],
       },
       {
-        text: "▶ Study",
+        text: "Study",
         items: [
           { text: "배포", link: "/deploy/" },
           { text: "Vue", link: "/vue/" },
@@ -50,15 +58,15 @@ export default defineConfig({
         ],
       },
       {
-        text: "▶ Mini Project",
+        text: "Mini Project",
         items: [{ text: "Spotify", link: "/spotify/" }],
       },
       {
         text: "",
         items: [
-          { text: "윈도우", link: "/window/" },
-          { text: "맥", link: "/mac/" },
-          { text: "기타/플러그인", link: "/etc/" },
+          { text: "윈도우", link: "/window" },
+          { text: "맥", link: "/mac" },
+          { text: "기타/플러그인", link: "/etc" },
         ],
       },
     ],
